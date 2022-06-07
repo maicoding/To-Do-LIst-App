@@ -1,24 +1,25 @@
 //Add new item to the list
 function newItem() {
-  let li = $('<li></li>');
-  let inputValue = $('#input').val();
-  li.append(inputValue);
+    let li = $('<li></li>');
+    let inputValue = $('#input').val();
+    li.append(inputValue);
 
-  if (inputValue === '') {
-    alert("Please enter an item to add to the list.");
-  } else {
-    $('#list').append(li);
-  }
-	
-  //Adding a delete button for the cross out function
-  let crossOutButton = $("<crossOutButton></crossOutButton>");
-  crossOutButton.append(document.createTextNode("X"));
-  li.append(crossOutButton);
-  crossOutButton.on("click", deleteListItem);
+    if (inputValue === '') {
+        alert("Please enter an item to add to the list.");
+    } else {
+        $('#list').append(li);
+    }
 
-  function deleteListItem() {
-    li.addClass("delete");
-  }
-  //Making the list sortable
-  $('#list').sortable();
+    //Adding a delete button for the cross out function
+    let crossOutButton = $("<crossOutButton></crossOutButton>");
+    crossOutButton.append(document.createTextNode("X"));
+    li.append(crossOutButton);
+    crossOutButton.on("click", deleteListItem);
+
+    function deleteListItem() {
+        li.addClass("delete");
+    }
+
+    //Making the list sortable
+    $('#list').sortable();
 }
