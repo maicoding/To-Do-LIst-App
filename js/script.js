@@ -12,12 +12,9 @@ function newItem() {
 
     //Crossing out tasks by double click
     function crossOut() {
-        li.toggleClass("strike");
+      li.toggleClass("strike");
     }
-
-    li.on("dblclick", function crossOut() {
-        li.toggleClass("strike");
-    });
+    li.on("dblclick", crossOut);
 
     //Adding a delete button for the cross out function
     let crossOutButton = $("<crossOutButton></crossOutButton>");
