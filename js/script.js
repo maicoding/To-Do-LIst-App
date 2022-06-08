@@ -10,6 +10,15 @@ function newItem() {
         $('#list').append(li);
     }
 
+    //Crossing out tasks by double click
+    function crossOut() {
+        li.toggleClass("strike");
+    }
+
+    li.on("dblclick", function crossOut() {
+        li.toggleClass("strike");
+    });
+
     //Adding a delete button for the cross out function
     let crossOutButton = $("<crossOutButton></crossOutButton>");
     crossOutButton.append(document.createTextNode("X"));
