@@ -30,6 +30,7 @@ input {
   text-align: center;
   margin-top: 2px;
   padding: 5px 15px;
+  border: 0;
 }
 
 #button:hover {
@@ -58,14 +59,11 @@ li:hover {
   cursor: pointer;
 }
 
-.delete {
-  display: none;
-}
-
-li>crossOutButton {
+.delete-button {
   background: none;
   border: none;
   float: right;
   color: #025f70;
   font-weight: 800;
+  cursor: pointer;
 }

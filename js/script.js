@@ -1,31 +1,34 @@
-//Add new item to the list
+$(function () {
+  $('#button').on('click', newItem);
+  $('form[name="toDoList"]').on('submit', function (event) {
+    event.preventDefault();
+    newItem();
+  });
+  $('#list').sortable();
+});
+
 function newItem() {
-    let li = $('<li></li>');
-    let inputValue = $('#input').val();
-    li.append(inputValue);
+  let input = $('#input');
+  let inputValue = input.val().trim();
 
-    if (inputValue === '') {
-        alert("Please enter an item to add to the list.");
-    } else {
-        $('#list').append(li);
-    }
+  if (inputValue === '') {
+    alert('Please enter an item to add to the list.');
+    return;
+  }
 
-    //Crossing out tasks by double click
-    function crossOut() {
-      li.toggleClass("strike");
-    }
-    li.on("dblclick", crossOut);
+  let li = $('<li></li>');
+  let deleteButton = $('<button type="button" class="delete-button">X</button>');
 
-    //Adding a delete button for the cross out function
-    let crossOutButton = $("<crossOutButton></crossOutButton>");
-    crossOutButton.append(document.createTextNode("X"));
-    li.append(crossOutButton);
-    crossOutButton.on("click", deleteListItem);
+  li.append(document.createTextNode(inputValue));
+  li.append(deleteButton);
+  $('#list').append(li);
+  input.val('').focus();
 
-    function deleteListItem() {
-        li.addClass("delete");
-    }
+  li.on('dblclick', function () {
+    li.toggleClass('strike');
+  });
 
-    //Making the list sortable
-    $('#list').sortable();
+  deleteButton.on('click', function () {
+    li.remove();
+  });
 }
