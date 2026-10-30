@@ -1,27 +1,104 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>To Do List</title>
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-  <div class="container">
-    <h2>To Do List App</h2>
-    <p><em> Double click to mark an item off, click on "X" to delete an item, and drag items to reorder.</em></p>
-    <form name="toDoList">
-      <input type="text" name="ListItem" id="input" />
-    </form>
-    <button type="button" id="button">Add</button>
-    <br />
-    <ol id="list"></ol>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-  <script src="js/script.js"></script>
-</body>
-
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="A quiet task planner with priorities, due dates and local saving."
+    />
+    <title>Today · To do</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to tasks</a>
+    <div class="shell">
+      <header class="brand">
+        <span class="brand-mark" aria-hidden="true">✓</span> To do
+      </header>
+      <main id="main">
+        <section class="intro">
+          <h1>Your tasks.</h1>
+          <p>Add tasks, set priorities and keep track of what is done.</p>
+        </section>
+        <form id="add-form" class="composer">
+          <label
+            >New task<input
+              id="input"
+              required
+              maxlength="200"
+              placeholder="What needs doing?"
+              autocomplete="off" /></label
+          ><label
+            >Priority<select id="priority">
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+              <option value="low">Low</option>
+            </select></label
+          ><label>Due date<input id="due" type="date" /></label
+          ><button class="primary">Add task</button>
+        </form>
+        <div class="toolbar">
+          <label class="grow"
+            >Search tasks<input
+              id="search"
+              type="search"
+              placeholder="Find a task" /></label
+          ><label
+            >Sort by<select id="sort">
+              <option value="manual">My order</option>
+              <option value="due">Due date</option>
+              <option value="priority">Priority</option>
+            </select></label
+          >
+        </div>
+        <div class="summary">
+          <div class="tabs" aria-label="Task filter">
+            <button data-filter="all" aria-pressed="true">All</button
+            ><button data-filter="active" aria-pressed="false">Active</button
+            ><button data-filter="done" aria-pressed="false">Done</button>
+          </div>
+          <span id="count" class="muted"></span>
+        </div>
+        <div
+          class="progress-track"
+          role="progressbar"
+          aria-label="Completed tasks"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+        >
+          <div class="progress-fill"></div>
+        </div>
+        <ul class="task-list" id="list"></ul>
+        <p id="empty" class="empty">
+          Your list is clear. Add your first task above.
+        </p>
+        <div class="notice" role="status" id="notice"></div>
+        <div class="actions">
+          <button id="clear">Clear completed</button
+          ><button id="undo" hidden>Undo last change</button>
+        </div>
+      </main>
+      <footer>Saved in this browser. Your tasks stay on this device.</footer>
+    </div>
+    <dialog id="edit-dialog" aria-labelledby="edit-title">
+      <button class="close" id="close-edit" aria-label="Close edit dialog">
+        Close
+      </button>
+      <h2 id="edit-title">Edit task</h2>
+      <form id="edit-form">
+        <label>Task<input id="edit-text" required maxlength="200" /></label
+        ><label
+          >Priority<select id="edit-priority">
+            <option value="normal">Normal</option>
+            <option value="high">High</option>
+            <option value="low">Low</option>
+          </select></label
+        ><label>Due date<input id="edit-due" type="date" /></label
+        ><button class="primary">Save changes</button>
+      </form>
+    </dialog>
+  </body>
 </html>
